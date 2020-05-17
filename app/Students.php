@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Students extends Model
 {
-    //
+    /**
+     * Get the user associated with this account.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
