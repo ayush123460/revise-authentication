@@ -42,7 +42,7 @@ regno => Registration number: varchar
 
 ## Technologies
 
-This server uses the ![Laravel](https://laravel.com) framework, and also uses Laravel Passport for authorization.
+This server uses the [Laravel](https://laravel.com) framework, and also uses Laravel Passport for authorization.
 
 ## License
 
