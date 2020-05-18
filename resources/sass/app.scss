@@ -3,3 +3,15 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.nav {
+    @apply flex items-center p-4;
+
+    &:hover {
+        @apply bg-gray-00 text-gray-200;
+    }
+
+    &.active {
+        @apply bg-gray-900 text-gray-200;
+    }
+}

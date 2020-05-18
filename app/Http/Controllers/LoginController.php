@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -24,11 +25,17 @@ class LoginController extends Controller
         $user = $request->only('email', 'password');
 
         if(Auth::attempt($user)) {
-            return redirect()->intended('/dashboard');
+            return Redirect::route('dashboard.home');
         }
 
         return view('main', [
             'err' => 'Please verify your credentials.'
         ]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return Redirect::route('home');
     }
 }

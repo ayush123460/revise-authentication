@@ -14,8 +14,6 @@ class DashController extends Controller
 
     public function index()
     {
-        if(Auth::check()) {
-            echo 'hi';
-        }
+        return view('dash.home');
     }
 }

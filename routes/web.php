@@ -23,9 +23,21 @@ Route::post('/login', [
     'as' => 'login.post'
 ]);
 
+Route::get('/logout', [
+    'uses' => 'LoginController@logout',
+    'as' => 'logout'
+])->middleware('auth');
+
 Route::view('/login', 'main')->name('login');
 
-Route::get('/dashboard', [
-    'uses' => 'DashController@index',
-    'as' => 'dashboard'
-]);
+Route::prefix('/dashboard')->group(function() {
+    Route::get('', [
+        'uses' => 'DashController@index',
+        'as' => 'dashboard.home'
+    ]);
+
+    Route::get('admin', [
+        'uses' => 'DashController@index',
+        'as' => 'dashboard.admin'
+    ]);
+});
