@@ -24,7 +24,7 @@
 
         <h2 class="uppercase text-gray-700 font-bold text-lg text-center mb-4">sign in</h2>
 
-        <form action="{{ route('Login') }}" method="POST" class="flex flex-col justify-center items-center">
+        <form action="{{ route('login.post') }}" method="POST" class="flex flex-col justify-center items-center">
             
             @csrf
 

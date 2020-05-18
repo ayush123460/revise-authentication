@@ -24,7 +24,7 @@ class LoginController extends Controller
         $user = $request->only('email', 'password');
 
         if(Auth::attempt($user)) {
-            return route('Dashboard');
+            return redirect()->intended('/dashboard');
         }
 
         return view('main', [

@@ -15,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [
     'uses' => 'PagesController@index',
-    'as' => 'Home'
+    'as' => 'home'
 ]);
 
 Route::post('/login', [
     'uses' => 'LoginController@login',
-    'as' => 'Login'
+    'as' => 'login.post'
+]);
+
+Route::view('/login', 'main')->name('login');
+
+Route::get('/dashboard', [
+    'uses' => 'DashController@index',
+    'as' => 'dashboard'
 ]);

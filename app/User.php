@@ -11,6 +11,8 @@ class User extends Authenticatable
     use Notifiable;
     use \App\Traits\UsesUuid;
 
+    protected $primaryKey = 'uuid';
+
     /**
      * The attributes that are mass assignable.
      *
