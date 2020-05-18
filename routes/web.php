@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'uses' => 'PagesController@index',
+    'as' => 'Home'
+]);
+
+Route::post('/login', [
+    'uses' => 'LoginController@login',
+    'as' => 'Login'
+]);
