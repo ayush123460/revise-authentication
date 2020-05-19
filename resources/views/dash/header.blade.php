@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="title" content="Identity // Revise">
-    <title>Dashboard - Identity // Revise</title>
+    <title>Dashboard - @yield('title') | Identity // Revise</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body class="bg-gray-300 h-screen text-gray-600 flex flex-col">

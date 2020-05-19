@@ -40,4 +40,14 @@ Route::prefix('/dashboard')->group(function() {
         'uses' => 'DashController@index',
         'as' => 'dashboard.admin'
     ]);
+
+    Route::get('profile', [
+        'uses' => 'DashController@profile',
+        'as' => 'dashboard.profile'
+    ]);
+
+    Route::post('profile', [
+        'uses' => 'DashController@update_profile',
+        'as' => 'dashboard.profile.update'
+    ]);
 });

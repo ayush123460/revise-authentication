@@ -18,7 +18,7 @@ class CreateTeachersTable extends Migration
             $table->foreign('uuid')
                 ->references('uuid')
                 ->on('users');
-            $table->string('empno');
+            $table->string('empno')->primary();
             $table->string('cabinno');
             $table->string('phone');
             $table->timestamps();

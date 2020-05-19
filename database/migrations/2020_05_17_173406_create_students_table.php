@@ -18,7 +18,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('uuid')
                 ->references('uuid')
                 ->on('users');
-            $table->string('regno');
+            $table->string('regno')->primary();
             $table->timestamps();
         });
     }

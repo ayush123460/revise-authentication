@@ -23,3 +23,11 @@
 .opacity-15 {
     opacity: .15;
 }
+
+.item-group {
+    @apply my-3 flex w-3/5 justify-between items-center;
+}
+
+.input {
+    @apply p-2 text-gray-800 border border-gray-400 rounded-sm;
+}

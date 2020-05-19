@@ -1,12 +1,14 @@
 @extends('dash.header')
 
+@section('title', 'Home')
+
 @section('content')
 
-<div class="py-6 px-4 w-full">
+<div class="py-6 px-4 flex-1">
 
     <h1 class="text-xl font-semibold text-gray-900">Analytics</h1>
 
-    <div class="mt-8 flex flex-wrap w-11/12">
+    <div class="mt-8 flex flex-wrap w-full">
 
         {{-- No. of Users in total --}}
 

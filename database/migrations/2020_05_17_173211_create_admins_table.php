@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
             $table->foreign('uuid')
                 ->references('uuid')
                 ->on('users');
-            $table->string('empno');
+            $table->string('empno')->primary();
             $table->timestamps();
         });
     }
