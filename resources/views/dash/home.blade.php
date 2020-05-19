@@ -1,6 +1,7 @@
 @extends('dash.header')
 
 @section('content')
+
 <div class="py-6 px-4 w-full">
 
     <h1 class="text-xl font-semibold text-gray-900">Analytics</h1>
@@ -10,7 +11,7 @@
         {{-- No. of Users in total --}}
 
         <div class="card bg-blue-500">
-            <div class="text-gray-800 text-4xl">155</div>
+            <div class="text-gray-800 text-4xl">{{ $u }}</div>
             <div class="absolute bottom-0 mb-4 text-gray-800 font-semibold">Total Users</div>
             <div>
                 <svg class="text-blue-900 opacity-15 transform rotate-45 absolute top-0 left-0" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
@@ -22,7 +23,7 @@
         {{-- No. of Admins --}}
 
         <div class="card bg-red-500">
-            <div class="text-gray-800 text-4xl">2</div>
+            <div class="text-gray-800 text-4xl">{{ $a }}</div>
             <div class="absolute bottom-0 mb-4 text-gray-800 font-semibold">Total Admins</div>
             <div>
                 <svg class="text-blue-900 opacity-15 absolute top-0 left-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -34,7 +35,7 @@
         {{-- No. of teachers --}}
 
         <div class="card bg-yellow-500">
-            <div class="text-gray-800 text-4xl">53</div>
+            <div class="text-gray-800 text-4xl">{{ $t }}</div>
             <div class="absolute bottom-0 mb-4 text-gray-800 font-semibold">Total Teachers</div>
             <div>
                 <svg class="text-yellow-900 opacity-15 absolute top-0 left-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -46,7 +47,7 @@
         {{-- No. of students --}}
 
         <div class="card bg-green-500">
-            <div class="text-gray-800 text-4xl">100</div>
+            <div class="text-gray-800 text-4xl">{{ $s }}</div>
             <div class="absolute bottom-0 mb-4 text-gray-800 font-semibold">Total Students</div>
             <div>
                 <svg class="text-green-900 opacity-15 absolute top-0 left-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
