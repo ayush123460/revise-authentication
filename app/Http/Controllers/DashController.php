@@ -44,6 +44,17 @@ class DashController extends Controller
         ]);
     }
 
+    public function teacher()
+    {
+        $t = Teachers::with('user')->get();
+
+        return view('dash.teacher', [
+            't' => $t,
+            'err' => session()->get('err') ?? null,
+            'msg' => session()->get('msg') ?? null
+        ]);
+    }
+
     public function profile(Request $request)
     {
         $u = auth()->user();

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\User;
-use App\Admin;
+use App\Teachers;
 
-class AdminController extends Controller
+class TeachersController extends Controller
 {
     public function __construct()
     {
@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function create(Request $request)
     {
-        return view('dash.admin.create', [
+        return view('dash.teacher.create', [
             'err' => $request->err ?? null
         ]);
     }
@@ -30,17 +30,25 @@ class AdminController extends Controller
             'email' => 'required|email:rfc|unique:users,email',
             'password' => 'required',
             'cpassword' => 'required',
-            'empno' => 'required|regex:/^[0-9]+$/u'
+            'empno' => 'required|regex:/^[0-9]+$/u',
+            'cabinno' => 'required',
+            'phone' => 'required|regex:/^[0-9]+$/u'
         ]);
 
         if($v->fails()) {
-            return redirect()->route('dashboard.admin.create', [
-                'err' => $v->errors()->all()
+            $err = "";
+
+            foreach($v->errors()->all() as $e) {
+                $err .= $e;
+            }
+
+            return redirect()->route('dashboard.teacher.create', [
+                'err' => $err
             ]);
         }
 
         if($request->password != $request->cpassword) {
-            return redirect()->route('dashboard.admin.create', [
+            return redirect()->route('dashboard.teacher.create', [
                 'err' => "Passwords do not match."
             ]);
         }
@@ -51,27 +59,25 @@ class AdminController extends Controller
             'lname' => $request->lname,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => 'admin'
+            'role' => 'teacher'
         ]);
 
-        $a = Admin::create([
+        $a = Teachers::create([
             'uuid' => $u->uuid,
-            'empno' => $request->empno
+            'empno' => $request->empno,
+            'cabinno' => $request->cabinno,
+            'phone' => $request->phone
         ]);
 
-        return redirect()->route('dashboard.admin');
+        return redirect()->route('dashboard.teacher')->with('msg', 'Added successfully');
     }
 
     public function update($e)
     {
-        $a = Admin::where('empno', $e)->get()->first();
+        $t = Teachers::where('empno', $e)->get()->first();
 
-        if(auth()->user()->uuid == $a->uuid) {
-            return redirect()->route('dashboard.profile');
-        }
-
-        return view('dash.admin.update', [
-            'a' => $a,
+        return view('dash.teacher.update', [
+            't' => $t,
             'err' => session()->get('err') ? session()->get('err') : null
         ]);
     }
@@ -81,7 +87,9 @@ class AdminController extends Controller
         $v = Validator::make($request->all(), [
             'fname' => 'regex:/^[a-zA-Z]+$/u|max:20',
             'lname' => 'regex:/^[a-zA-Z]+$/u|max:20',
-            'email' => 'email'
+            'email' => 'email',
+            'cabinno' => '',
+            'phone' => 'regex:/^[0-9]+$/u'
         ]);
 
         if($v->fails()) {
@@ -106,25 +114,23 @@ class AdminController extends Controller
             }
         }
 
-        $a = Admin::where('empno', $request->emp)->with('user')->get()->first();
+        $a = Teachers::where('empno', $request->emp)->with('user')->get()->first();
         $a->user->fname = $request->fname ?? $a->user->fname;
         $a->user->lname = $request->lname ?? $a->user->lname;
         $a->user->email = $request->email ?? $a->user->email;
         $a->user->password = bcrypt($request->password) ?? $a->user->password;
         $a->user->save();
-        $a->empno = $request->empno;
+        $a->empno = $request->empno ?? $a->empno;
+        $a->cabinno = $request->cabinno ?? $a->cabinno;
+        $a->phone = $request->phone ?? $a->phone;
         $a->save();
 
-        return redirect()->route('dashboard.admin');
+        return redirect()->route('dashboard.teacher')->with('msg', 'Updated successfully');
     }
     
     public function delete($e)
     {
-        $a = Admin::where('empno', $e)->with('user')->get()->first();
-
-        if(auth()->user()->uuid == $a->uuid) {
-            return back()->with('err', 'You cannot delete yourself.');
-        }
+        $a = Teachers::where('empno', $e)->with('user')->get()->first();
 
         $u = $a->user;
         $a->delete();

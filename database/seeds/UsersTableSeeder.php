@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('admins')->insert([
             'uuid' => $uuid,
-            'empno' => '00001',
+            'empno' => '10001',
             'created_at' => now(),
             'updated_at' => now()
         ]);

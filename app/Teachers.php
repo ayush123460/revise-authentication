@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teachers extends Model
 {
+    protected $guarded = [];
 
     protected $primaryKey = 'empno';
     
@@ -14,6 +15,6 @@ class Teachers extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'uuid', 'uuid');
     }
 }

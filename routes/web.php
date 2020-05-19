@@ -36,7 +36,17 @@ Route::prefix('/dashboard')->group(function() {
         'as' => 'dashboard.home'
     ]);
 
-    Route::prefix('admin')->group(function() {
+    Route::get('profile', [
+        'uses' => 'DashController@profile',
+        'as' => 'dashboard.profile'
+    ]);
+
+    Route::post('profile', [
+        'uses' => 'DashController@update_profile',
+        'as' => 'dashboard.profile.update'
+    ]);
+
+    Route::prefix('admin')->middleware('checkAdmin')->group(function() {
         Route::get('/', [
             'uses' => 'DashController@admin',
             'as' => 'dashboard.admin'
@@ -68,13 +78,35 @@ Route::prefix('/dashboard')->group(function() {
         ]);
     });
 
-    Route::get('profile', [
-        'uses' => 'DashController@profile',
-        'as' => 'dashboard.profile'
-    ]);
+    Route::prefix('teacher')->middleware('checkAdmin')->group(function() {
+        Route::get('/', [
+            'uses' => 'DashController@teacher',
+            'as' => 'dashboard.teacher'
+        ]);
+    
+        Route::get('create', [
+            'uses' => 'TeachersController@create',
+            'as' => 'dashboard.teacher.create'
+        ]);
 
-    Route::post('profile', [
-        'uses' => 'DashController@update_profile',
-        'as' => 'dashboard.profile.update'
-    ]);
+        Route::post('create', [
+            'uses' => 'TeachersController@create_post',
+            'as' => 'dashboard.teacher.create'
+        ]);
+    
+        Route::get('update/{e}', [
+            'uses' => 'TeachersController@update',
+            'as' => 'dashboard.teacher.update'
+        ]);
+
+        Route::post('update/{e}', [
+            'uses' => 'TeachersController@update_post',
+            'as' => 'dashboard.teacher.update'
+        ]);
+    
+        Route::get('delete/{e}', [
+            'uses' => 'TeachersController@delete',
+            'as' => 'dashboard.teacher.delete'
+        ]);
+    });
 });
