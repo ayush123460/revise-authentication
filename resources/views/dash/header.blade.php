@@ -12,7 +12,7 @@
     <header class="bg-white">
         <div class="container mx-auto py-5 px-5 flex justify-between items-center">
             <h1 class="font-semibold text-2xl text-gray-800">Dashboard - Identity Management</h1>
-            <h1 class="text-xl text-gray-800">Welcome, {{ auth()->user()->fname }}</h1>
+            <h1 class="text-lg text-gray-800">Welcome, {{ auth()->user()->fname }}</h1>
         </div>
     </header>
 
