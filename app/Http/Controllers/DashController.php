@@ -33,6 +33,17 @@ class DashController extends Controller
         ]);
     }
 
+    public function admin()
+    {
+        $a = Admin::with('user')->get();
+
+        return view('dash.admin', [
+            'a' => $a,
+            'err' => session()->get('err') ?? null,
+            'msg' => session()->get('msg') ?? null
+        ]);
+    }
+
     public function profile(Request $request)
     {
         $u = auth()->user();
@@ -57,8 +68,6 @@ class DashController extends Controller
 
     public function update_profile(Request $request)
     {
-        $val = array_filter($request->all());
-
         $v = Validator::make($request->all(), [
             'fname' => 'regex:/^[a-zA-Z]+$/u|max:20',
             'lname' => 'regex:/^[a-zA-Z]+$/u|max:20',

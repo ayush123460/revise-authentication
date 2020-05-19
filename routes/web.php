@@ -36,10 +36,37 @@ Route::prefix('/dashboard')->group(function() {
         'as' => 'dashboard.home'
     ]);
 
-    Route::get('admin', [
-        'uses' => 'DashController@index',
-        'as' => 'dashboard.admin'
-    ]);
+    Route::prefix('admin')->group(function() {
+        Route::get('/', [
+            'uses' => 'DashController@admin',
+            'as' => 'dashboard.admin'
+        ]);
+    
+        Route::get('create', [
+            'uses' => 'AdminController@create',
+            'as' => 'dashboard.admin.create'
+        ]);
+
+        Route::post('create', [
+            'uses' => 'AdminController@create_post',
+            'as' => 'dashboard.admin.create'
+        ]);
+    
+        Route::get('update/{e}', [
+            'uses' => 'AdminController@update',
+            'as' => 'dashboard.admin.update'
+        ]);
+
+        Route::post('update/{e}', [
+            'uses' => 'AdminController@update_post',
+            'as' => 'dashboard.admin.update'
+        ]);
+    
+        Route::get('delete/{e}', [
+            'uses' => 'AdminController@delete',
+            'as' => 'dashboard.admin.delete'
+        ]);
+    });
 
     Route::get('profile', [
         'uses' => 'DashController@profile',
