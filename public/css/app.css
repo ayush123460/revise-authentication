@@ -19046,7 +19046,15 @@ video {
   display: flex;
   align-items: center;
   padding: 1rem;
-  cursor: pointer;
+}
+
+.nav:hover {
+  --bg-opacity: 1;
+  background-color: #4a5568;
+  background-color: rgba(74, 85, 104, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #edf2f7;
+  color: rgba(237, 242, 247, var(--text-opacity));
 }
 
 .nav.active {
@@ -19058,13 +19066,20 @@ video {
   color: rgba(237, 242, 247, var(--text-opacity));
 }
 
-.nav:hover {
-  --bg-opacity: 1;
-  background-color: #4a5568;
-  background-color: rgba(74, 85, 104, var(--bg-opacity));
-  --text-opacity: 1;
-  color: #edf2f7;
-  color: rgba(237, 242, 247, var(--text-opacity));
+.card {
+  margin: 0.5rem;
+  width: 12rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.opacity-15 {
+  opacity: 0.15;
 }
 
 @media (min-width: 640px) {

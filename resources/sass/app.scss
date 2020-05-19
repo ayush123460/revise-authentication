@@ -8,10 +8,18 @@
     @apply flex items-center p-4;
 
     &:hover {
-        @apply bg-gray-00 text-gray-200;
+        @apply bg-gray-700 text-gray-200;
     }
 
     &.active {
         @apply bg-gray-900 text-gray-200;
     }
+}
+
+.card {
+    @apply m-2 w-48 h-40 rounded-lg flex justify-center items-center relative overflow-hidden;
+}
+
+.opacity-15 {
+    opacity: .15;
 }

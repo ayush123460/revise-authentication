@@ -18,6 +18,7 @@
 
     <div class="flex flex-1">
         <x-sidebar />
+        @yield('content')
     </div>
 </body>
 </html>
