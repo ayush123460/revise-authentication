@@ -6,7 +6,7 @@
 
 <div class="py-6 px-4 flex-1">
 
-    <h1 class="text-xl font-semibold text-gray-900 flex justify-between items-center">
+    <h1 class="container mx-auto text-xl font-semibold text-gray-900 flex justify-between items-center">
         Teachers
         <a href="{{ route('dashboard.teacher.create') }}" class="block w-32 p-2 font-normal text-center bg-blue-600 hover:bg-blue-400 active:border text-white cursor-pointer rounded">
             + Add new

@@ -16,6 +16,7 @@ class DashController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkAdmin')->except('profile', 'update_profile');
     }
 
     public function index()
@@ -50,6 +51,17 @@ class DashController extends Controller
 
         return view('dash.teacher', [
             't' => $t,
+            'err' => session()->get('err') ?? null,
+            'msg' => session()->get('msg') ?? null
+        ]);
+    }
+
+    public function student()
+    {
+        $t = Students::with('user')->get();
+
+        return view('dash.student', [
+            's' => $t,
             'err' => session()->get('err') ?? null,
             'msg' => session()->get('msg') ?? null
         ]);
@@ -123,6 +135,11 @@ class DashController extends Controller
                 $a->empno = $request->empno;
                 $a->save();
             }
+        } else if(auth()->user()->role == 'teacher') {
+            $a = Teachers::where('uuid', auth()->user()->uuid)->get()->first();
+            $a->cabinno = $request->cabinno ?? $a->cabinno;
+            $a->phone = $request->phone ?? $a->phone;
+            $a->save();
         }
 
         return redirect()->route('dashboard.profile', [

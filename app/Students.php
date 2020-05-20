@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Students extends Model
 {
+    protected $guarded = [];
 
     protected $primaryKey = 'regno';
 
@@ -14,6 +15,11 @@ class Students extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'uuid', 'uuid');
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
     }
 }

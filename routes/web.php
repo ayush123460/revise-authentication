@@ -109,4 +109,36 @@ Route::prefix('/dashboard')->group(function() {
             'as' => 'dashboard.teacher.delete'
         ]);
     });
+
+    Route::prefix('student')->middleware('checkAdmin')->group(function() {
+        Route::get('/', [
+            'uses' => 'DashController@student',
+            'as' => 'dashboard.student'
+        ]);
+    
+        Route::get('create', [
+            'uses' => 'StudentsController@create',
+            'as' => 'dashboard.student.create'
+        ]);
+
+        Route::post('create', [
+            'uses' => 'StudentsController@create_post',
+            'as' => 'dashboard.student.create'
+        ]);
+    
+        Route::get('update/{r}', [
+            'uses' => 'StudentsController@update',
+            'as' => 'dashboard.student.update'
+        ]);
+
+        Route::post('update/{r}', [
+            'uses' => 'StudentsController@update_post',
+            'as' => 'dashboard.student.update'
+        ]);
+    
+        Route::get('delete/{r}', [
+            'uses' => 'StudentsController@delete',
+            'as' => 'dashboard.student.delete'
+        ]);
+    });
 });

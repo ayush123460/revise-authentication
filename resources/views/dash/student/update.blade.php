@@ -1,20 +1,14 @@
 @extends('dash.header')
 
-@section('title', 'Profile')
+@section('title', 'Add Student')
 
 @section('content')
 
 <div class="py-6 px-4 flex-1">
 
-    <h1 class="text-xl font-semibold text-gray-900">Your Profile</h1>
+    <h1 class="text-xl font-semibold text-gray-900">Add Student</h1>
 
     <div class="container mt-5 bg-white mx-auto py-3 px-6 rounded text-gray-900">
-
-        @isset($msg)
-        <div class="my-3 py-2 px-4 bg-green-300 border-2 border-green-400">
-            {{ $msg }}
-        </div>
-        @endisset
 
         @isset($err)
         <div class="my-3 py-2 px-4 bg-red-300 border-2 border-red-400">
@@ -22,30 +16,24 @@
         </div>
         @endisset
 
-        <form action="{{ route('dashboard.profile.update') }}" method="POST" class="flex flex-col">
+        <form action="{{ route('dashboard.student.update', $t->regno) }}" method="POST" class="flex flex-col">
 
             @csrf
 
             <div class="item-group">
                 <label for="fname">First Name:</label>
-                <input class="input" name="fname" type="text" value="{{ $u->fname }}">
+                <input class="input" name="fname" type="text" value="{{ $t->user->fname }}">
             </div>
 
             <div class="item-group">
                 <label for="lname">Last Name:</label>
-                <input type="text" name="lname" class="input" value="{{ $u->lname }}">
+                <input type="text" name="lname" class="input" value="{{ $t->user->lname }}">
             </div>
 
             <div class="item-group">
                 <label for="email">Email:</label>
-                @if($u->role != 'admin')
-                <input type="email" name="email" class="input" value="{{ $u->email }}" disabled>
-                @else
-                <input type="email" name="email" class="input" value="{{ $u->email }}">
-                @endif
+                <input type="email" name="email" class="input" value="{{ $t->user->email }}">
             </div>
-
-            @if($u->role == 'admin')
 
             <div class="item-group">
                 <label for="password">New Password:</label>
@@ -57,15 +45,12 @@
                 <input type="password" name="cpassword" class="input">
             </div>
 
-            <x-admin-profile :admin="$d" />
+            <div class="item-group">
+                <label for="regno">Registration Number:</label>
+                <input type="text" name="regno" class="input" value="{{ $t->regno }}">
+            </div>
 
-            @endif
-
-            @if($u->role == 'teacher')
-
-            <x-teacher-profile :teacher="$d" />
-
-            @endif
+            <input type="hidden" name="reg" value="{{ $t->regno }}">
 
             <div class="item-group">
                 <input type="submit" value="Update" class="w-32 p-2 bg-blue-600 hover:bg-blue-800 active:border text-white font-semibold uppercase cursor-pointer rounded">

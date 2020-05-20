@@ -16,7 +16,7 @@ class checkAdmin
     public function handle($request, Closure $next)
     {
         if(auth()->user()->role != 'admin') {
-            return redirect()->route('dashboard.home');
+            return redirect()->route('dashboard.profile');
         }
 
         return $next($request);

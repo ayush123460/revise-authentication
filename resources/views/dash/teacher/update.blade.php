@@ -63,7 +63,7 @@
             <input type="hidden" name="emp" value="{{ $t->empno }}">
 
             <div class="item-group">
-                <input type="submit" value="Create" class="w-32 p-2 bg-blue-600 hover:bg-blue-800 active:border text-white font-semibold uppercase cursor-pointer rounded">
+                <input type="submit" value="Update" class="w-32 p-2 bg-blue-600 hover:bg-blue-800 active:border text-white font-semibold uppercase cursor-pointer rounded">
             </div>
 
         </form>
