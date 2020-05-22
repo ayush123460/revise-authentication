@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="Identity // Revise">
-    <title>Identity // Revise</title>
+    <title>Login // Revise</title>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
@@ -14,7 +14,7 @@
 
         <div class="container mx-auto py-5 px-5 text-center">
 
-            <h1 class="font-semibold text-2xl text-gray-800">Identity // Revise</h1>
+            <h1 class="font-semibold text-2xl text-gray-800">Login // Revise</h1>
             
         </div>
 
