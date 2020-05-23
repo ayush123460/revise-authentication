@@ -54,6 +54,8 @@ We recommend running the server under Nginx. More information can be found (here
 This server can be run locally with the help of the following command:
 `php artisan serve`
 
+The default admin account email and password is `admin@domain.com` and `passw0rd`
+
 ## Database design
 
 The database includes 4 tables - Users, Admin, Teachers, Students.
