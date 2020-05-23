@@ -19,7 +19,7 @@ This server handles the authentication for all Revise services.
 
 **Warning: This software is not suitable for production use.**
 
-Laravel utilizes (Composer)[https://getcomposer.org] to manage its dependencies. Consult with your operating system's manual for installing it.
+Laravel utilizes [Composer](https://getcomposer.org) to manage its dependencies. Consult with your operating system's manual for installing it.
 
 1. Clone this repository into a folder of your choice.
 
@@ -47,7 +47,7 @@ There are two ways to run the application
 
 1. Web server
 
-We recommend running the server under Nginx. More information can be found (here)[https://laravel.com/docs/7.x].
+We recommend running the server under Nginx. More information can be found [here](https://laravel.com/docs/7.x).
 
 2. Local dev environment
 
