@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Admin;
+use App\Teachers;
+use App\Students;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +18,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    $id = auth()->user()->uuid;
+    $role = auth()->user()->role;
+
+    switch($role) {
+        case 'admin':
+            $u = Admin::where('uuid', $id)->first()->get();
+        break;
+        case 'teacher':
+            $u = Teachers::where('uuid', $id)->first()->get();
+        break;
+        case 'student':
+            $u = Student::where('uuid', $id)->first()->get();
+        break;
+    }
+
+    return response()->json([
+        'user' => auth()->user(),
+        'details' => $u
+    ]);
+});
+
+Route::middleware('auth:api')->get('logout', function (Request $request) {
+    auth()->user()->token()->revoke();
+
+    return response();
 });
