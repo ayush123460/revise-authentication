@@ -17,7 +17,7 @@ use App\Students;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function () {
     $id = auth()->user()->uuid;
     $role = auth()->user()->role;
 
@@ -29,7 +29,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
             $u = Teachers::where('uuid', $id)->first()->get();
         break;
         case 'student':
-            $u = Student::where('uuid', $id)->first()->get();
+            $u = Students::where('uuid', $id)->first()->get();
         break;
     }
 
@@ -39,8 +39,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     ]);
 });
 
-Route::middleware('auth:api')->get('logout', function (Request $request) {
-    auth()->user()->token()->revoke();
+Route::middleware('auth:api')->post('teacher', function (Request $request) {
+    $t = Teachers::where('uuid', $request->id)->with('user')->first();
+    $r = [
+        'name' => $t->user->fname . " " . $t->user->lname,
+        'email' => $t->user->email,
+        'cabinno' => $t->cabinno,
+        'phone' => $t->phone
+    ];
+    return response()->json($r);
+});
 
+Route::middleware('auth:api')->get('logout', function () {
+    auth()->user()->token()->revoke();
+    auth()->logout();
     return response();
 });
